@@ -28,6 +28,7 @@ git+https://github.com/zxyf/django-qcloud-cos.git
         'SecretKey': 'SecretKey: SecretKey 是开发者拥有的项目身份密钥。',
         'region': '域名中的地域信息，枚举值：cn-east（华东），cn-north（华北），cn-south（华南），sg（新加坡）',
         'bucket': '存储桶是 COS 中用于存储数据的容器，是用户存储在 Appid 下的第一级目录，每个对象都存储在一个存储桶中。',
+        'scheme': 'http/https 启用 http 还是 https',
     }
     ```
     * 其他配置：
@@ -43,3 +44,8 @@ git+https://github.com/zxyf/django-qcloud-cos.git
 3. 提供pip install setup脚本
 4. 支持直接存储与读取URL
 5. 支持自定义域名
+
+# 本Fork增强
+1. 支持Python3(未进行全面测试)
+2. 返回地址可选 http/https
+3. 修改华东地区返回 url

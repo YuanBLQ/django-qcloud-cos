@@ -78,6 +78,7 @@ class QcloudStorage(Storage):
         if name.startswith('http'):
             # 直接存的URL，直接返回，这类数据不支持取content
             return name
+        name = name[0] == '/' and name or "/" + name
         if getattr(settings, 'COS_URL', ''):
             url = "%s%s" % (
                 settings.COS_URL,
@@ -87,8 +88,9 @@ class QcloudStorage(Storage):
             if settings.COS_USE_CDN:
                 cdn_host = 'file'
             else:
-                cdn_host = 'cosgz'
-            url = "http://%s-%s.%s.myqcloud.com%s" % (
+                cdn_host = 'cossh'
+            url = "%s://%s-%s.%s.myqcloud.com%s" % (
+                self.option['scheme'],
                 self.option['bucket'],
                 self.option['Appid'],
                 cdn_host,

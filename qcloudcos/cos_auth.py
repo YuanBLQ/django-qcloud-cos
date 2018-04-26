@@ -2,7 +2,10 @@
 # coding=utf-8
 
 import time
-from urllib2 import quote
+try:
+    from urllib2 import quote
+except ImportError:
+    from urllib.parse import quote
 import hmac
 import hashlib
 

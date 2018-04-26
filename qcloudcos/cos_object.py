@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 import requests
 from qcloudcos.cos_auth import Auth
 from django.conf import settings
-from utils import get_logger
+from qcloudcos.utils import get_logger
 
 
 LOGGER = get_logger('Tencent Cos')
@@ -19,10 +20,11 @@ class CosObject(object):
         SecretKey = self.option['SecretKey']
         region = self.option['region']
         bucket = self.option['bucket']
+        scheme = self.option['scheme']
         if name[0] != '/':
             name = '/' + name
         objectName = name
-        url = "http://%s-%s.%s.myqcloud.com%s" % (bucket, appid, region, objectName)
+        url = "%s://%s-%s.%s.myqcloud.com%s" % (scheme, bucket, appid, region, objectName)
         s = requests.Session()
         if is_private:
             auth = Auth(appid, SecretID, SecretKey, bucket, region, method, objectName)
@@ -39,10 +41,11 @@ class CosObject(object):
         SecretKey = self.option['SecretKey']
         region = self.option['region']
         bucket = self.option['bucket']
+        scheme = self.option['scheme']
         if name[0] != '/':
             name = '/' + name
         objectName = name
-        url = "http://%s-%s.%s.myqcloud.com%s" % (bucket, appid, region, objectName)
+        url = "%s://%s-%s.%s.myqcloud.com%s" % (scheme, bucket, appid, region, objectName)
 
         s = requests.Session()
         auth = Auth(appid, SecretID, SecretKey, bucket, region, method, objectName)
@@ -62,10 +65,11 @@ class CosObject(object):
         SecretKey = self.option['SecretKey']
         region = self.option['region']
         bucket = self.option['bucket']
+        scheme = self.option['scheme']
         if name[0] != '/':
             name = '/' + name
         objectName = name
-        url = "http://%s-%s.%s.myqcloud.com%s" % (bucket, appid, region, objectName)
+        url = "%s://%s-%s.%s.myqcloud.com%s" % (scheme, bucket, appid, region, objectName)
         s = requests.Session()
         if is_private:
             auth = Auth(appid, SecretID, SecretKey, bucket, region, method, objectName)
@@ -82,10 +86,11 @@ class CosObject(object):
         SecretKey = self.option['SecretKey']
         region = self.option['region']
         bucket = self.option['bucket']
+        scheme = self.option['scheme']
         if name[0] != '/':
             name = '/' + name
         objectName = name
-        url = "http://%s-%s.%s.myqcloud.com%s" % (bucket, appid, region, objectName)
+        url = "%s://%s-%s.%s.myqcloud.com%s" % (scheme, bucket, appid, region, objectName)
 
         s = requests.Session()
         auth = Auth(appid, SecretID, SecretKey, bucket, region, method, objectName)
