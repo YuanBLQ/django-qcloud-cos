@@ -16,7 +16,7 @@ class QcloudStorage(Storage):
     def _open(self, name, mode='rb'):
         pr = urlparse(name)
         domain = '{}://{}/'.format(pr.scheme, pr.hostname)
-        if domain.find(self.option.COS_APPID) != -1:
+        if domain.find(self.option.get('Appid')) != -1:
             name = name.replace(domain, '')
         if name.startswith('http'):
             # 直接存的URL，直接返回，这类数据不支持取content
