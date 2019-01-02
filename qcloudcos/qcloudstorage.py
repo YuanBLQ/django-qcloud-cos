@@ -5,6 +5,7 @@ from django.core.exceptions import SuspiciousFileOperation
 from django.utils.text import get_valid_filename
 from django.utils.crypto import get_random_string
 from qcloudcos.cos_object import CosObject
+from urllib.parse import urlparse
 
 
 class QcloudStorage(Storage):
@@ -13,6 +14,10 @@ class QcloudStorage(Storage):
             self.option = settings.QCLOUD_STORAGE_OPTION
 
     def _open(self, name, mode='rb'):
+        pr = urlparse(name)
+        domain = '{}://{}/'.format(pr.scheme, pr.hostname)
+        if domain.find(self.option.COS_APPID) != -1:
+            name = name.replace(domain, '')
         if name.startswith('http'):
             # 直接存的URL，直接返回，这类数据不支持取content
             return ''
